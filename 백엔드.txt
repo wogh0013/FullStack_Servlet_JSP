@@ -1,0 +1,121 @@
+이클립스 - 플러그인 
+비주얼스튜디오코드 - 확장팩 
+
+https://www.eclipse.org/downloads/
+
+https://www.eclipse.org/downloads/packages/
+Eclipse IDE for Enterprise Java and Web Developers  를 다운받자 
+
+실제 개발하러 가면  공유폴더를 주는데 자바, 디비, 이클립스하고 톰캣
+별도의 폴더를 만들고 거기에 다 다운받아놓고 하나씩 설치하기 
+
+리눅스 - 리누스 토발즈라는 친구가 유닉스를 PC용으로 만들어놓음 
+더 많은 사람들이 자유롭게 OS를 만들었음 좋겠다 소스를 공개함 
+능력자면 리눅스 소스 가져다가 새로운 os 를 만들 수 있다 
+GNU 프로젝트 - 오픈 소스방식 
+페도라, 레드햇, 데비앙 ....    centeros, ubuntu : centeros/우분트  
+한빛 이것이 우분투 리눅스다    이이표 김병세 
+                             넬 데일 - c++ 프로그래밍 바이블 
+                             허버트 슈미트 
+                             이지스퍼블리싱 
+
+
+웹서버 : 웹클라이언트(크롬, 사파리, 익스, 파이어폭스, 모질라)의 요청을 받아서 응답을 주는 프로그램을 말함 
+        아파치, ngnix, iis, webtobe 
+
+        브라우저    -------------------> 아파치 
+                                           index.html
+                                           board
+                                              ㄴ board_list.html 
+                    request: http://www.daum.net 
+                   ------------------------------>
+                   <------------------------------
+                    response(index.html) 부라우저에 보내면
+                    부라우저가  tag를 해석해서 화면에 렌더링을 한다 
+
+
+        html + java           : jsp       - java 를 해석해서 html문서를 만들어야 한다  (WAS)
+        html + c              : php       - c를 해석해서 html문서르 만들어야 한다  
+
+        asp, asp.net 둘다 마이크로소프트사꺼임 iis 라는 프로그램이 os professional  버전이상부터
+        html + visual basic   : asp          iis 웹서버라고 부른다 
+        html + c#             : asp.net  
+        
+        자바개발자들만 Was, WebServer 용어를 분리해서 생각한다.
+        Was : (1)웹로직 - 전세계 70%  정도 시장을 석권하고 있음 
+              (2)제우스 - 티맥스라는 한국 회사가 만들은 was 국가기관 + 대학 + 기업.....
+              (3)레진 - 비교적 저렴, 사용이 편하고  기업에서 쓰기가 
+              (4)톰캣 - 공짜라서 
+
+        단순한 html이나 image 굳이 was로 번역하지 않고 보내는게 낫기때문에 아파치로 보낸다.
+        자바는 번역해야 하니까 was를 거치게 한다. 
+        WAS(Web Application Server의 약자)
+        
+          
+톰캣의 폴더 구조 
+
+    bin - binary 의 약자 실행 프로그램이 여기 있음 
+          startup.bat 
+          sutdown.bat 
+
+          확장자가 bat인 파일은 배치파일이라고 부른다 
+          명령어가 여러개를 가동시켜야 할때 귀찮거든요 
+          이걸 묶어서 하나의 파일로 만든다 - 배치파일 
+
+          서버를 시작명령어가 startup 
+          서버 종료명령어가   shutdown 
+
+          오류가 발생해서 서버가 작동을 못하고  cmd 창이 화 닫힌다. 
+          그럴때는  catalina run 을 통해서 서버를 가동하면 오류 메시지가 뜬다 
+
+cmd       startup
+
+
+window - preference - server - runtime environment 
+
+project - Dynamic Web project 
+
+
+com.wooti.servlet
+
+
+모델1 - java 코드와 html , css, javascript 가 하나의 파일에 존재하면서 코드가 난해하고 복잡해진다. 
+        디자인이 변경되면 전체를 다시 만들어야 한다.
+        디자이너는 코드가 복잡해서 개발자한테 요청을 해야 한다 
+
+
+모델2 - 자바코드를         뷰 또는 프리젠테이션( css, html, javascipt)과 분리시키자 
+       서블릿이 필요함 
+
+       MVC 개발 
+       M - model(데이테베이스에 데이터 읽고 쓰기만 담당)
+       V - View 뷰(화면에 보이는 부분, 프리젠테이션, css, javascript, html) 
+       C - Controller     http://localhost:9000/project03/board/board_write.jsp 
+           사용자가 직접 url을 쳐서 view로 접근하는 걸 막는다 
+           컨트롤러를 거쳐서 뷰를 호출하도록    
+
+      사용자가 요청 -----> Controller -----> Model 데이터 가져와 
+                                                .
+                                                .
+                                     <-------   .
+                        컨트롤라가 받아서 새로운 View 에 데이터를 결합해서 
+                        사용자한테 보내주자 
+
+      모델2 방식으로 개발을 돕는 프레임워크를 만들어서 프레임워크를 상속받아서 만들면 누가 만들어도 모델2가 된다. 
+      스프링 프레임워크가 다른 프레임워크를 물리침 
+
+
+      뷰를 별도의 서버         
+      프론트앤드서버    <----------------------------------> 백앤드서버 
+      nodejs                                                스프링 프레임워크  + MyBatis 
+      react나 Vue                                           스프링부트(jsp, mybatis 다빼고 JPA)
+                                                            스프링부트(jsp, mybatis 쓸수는 있다)
+                                                            
+
+
+
+
+
+
+
+
