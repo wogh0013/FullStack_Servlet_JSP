@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.util.*" %>
+<%@page import="com.woori.project03.board.*" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,19 +36,33 @@
           </div>
 
         <table class="table table-hover ">
+        	<colgroup>
+        		<col width="8%">
+        		<col width="*">
+        		<col width="12%">
+        		<col width="12%">
+        	</colgroup>
             <thead class="table-secondary">
               <tr>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>Email</th>
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>작성일</th>
               </tr>
             </thead>
             <tbody>
+            <%
+            
+            List<BoardDto> list = (List<BoardDto>)request.getAttribute("boardList");
+           	for(BoardDto tempDto : list){
+            %>
               <tr>
-                <td>John</td>
-                <td>Doe</td>
-                <td>john@example.com</td>
+                <td><%=tempDto.getId()%></td>
+                <td><%=tempDto.getTitle()%></td>
+                <td><%=tempDto.getWriter()%></td>
+                <td><%=tempDto.getWdate()%></td>
               </tr>
+            <%}%>
             </tbody>
           </table>
 
@@ -63,10 +80,14 @@
           </ul>
        
           <div class="container mt-3" style="text-align:right;">
-            <a href="<%=request.getContextPath()%>/board/board_write.jsp" 
+            <a href="<%=request.getContextPath()%>/board?cmd=write" 
                class="btn btn-secondary">글쓰기</a>
           </div>
           
     </div>
 </body>
 </html>
+
+
+
+

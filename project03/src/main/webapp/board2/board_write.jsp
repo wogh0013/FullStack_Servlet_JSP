@@ -16,6 +16,8 @@
     <%@include file="../include/nav.jsp" %>
 
 
+	<form  name="myform" action="<%=request.getContextPath()%>/board?cmd=save" method="post">
+	
     <div class="container" style="margin-top:80px">
         <h2>게시판 쓰기</h2>
 
@@ -56,13 +58,18 @@
           </table>
        
           <div class="container mt-3" style="text-align:right;">
-            <a href="#" class="btn btn-secondary">Link Button</a>
-            <a href="./board_lisst.html"><button type="button" class="btn btn-secondary">Button</button></a>a>
-            <input type="button" class="btn btn-secondary" value="Input Button">
             <input type="submit" class="btn btn-secondary" value="Submit Button">
-            <input type="reset" class="btn btn-secondary" value="Reset Button">
           </div>
           
     </div>
+    
+    </form>
 </body>
 </html>
+
+
+
+
+
+
+
