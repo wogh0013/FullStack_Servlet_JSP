@@ -26,4 +26,15 @@ public class BoardController {
 		
 		dao.insert(dto);
 	}
+	
+	public BoardDto getView(HttpServletRequest req, HttpServletResponse resp) {
+		String id = req.getParameter("id");
+		
+		return dao.getView(id);
+	}
 }
+
+
+
+
+

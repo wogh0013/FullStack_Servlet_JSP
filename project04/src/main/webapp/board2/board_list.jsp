@@ -58,7 +58,10 @@
             %>
               <tr>
                 <td><%=tempDto.getId()%></td>
-                <td><%=tempDto.getTitle()%></td>
+                <%
+                String url=request.getContextPath()+"/board?cmd=view&id="+tempDto.getId();
+                %>
+                <td><a href="<%=url%>"><%=tempDto.getTitle()%></a></td>
                 <td><%=tempDto.getWriter()%></td>
                 <td><%=tempDto.getWdate()%></td>
               </tr>

@@ -22,6 +22,9 @@ public class BoardServlet extends HttpServlet{
 		resp.setCharacterEncoding("utf-8");
 		
 		String cmd = req.getParameter("cmd");
+		
+		System.out.println(cmd);
+		
 		BoardController controller = new BoardController();
 		
 		if(cmd==null || cmd.equals("list"))
@@ -43,7 +46,13 @@ public class BoardServlet extends HttpServlet{
 			resp.sendRedirect(req.getContextPath()+"/board?cmd=list"); 
 			//forward   request객체에 저장된값을 전달하는 방식으로 이동
 			//request  에 저장된거 지우고 이동함 
-		}		
+		}
+		else if(cmd.equals("view"))  // /board?cmd=view&id=1
+		{
+			req.setAttribute("boardDto", controller.getView(req, resp));
+			RequestDispatcher rd = req.getRequestDispatcher("/board2/board_view.jsp");
+			rd.forward(req, resp);		
+		}
 	}
 
 	@Override

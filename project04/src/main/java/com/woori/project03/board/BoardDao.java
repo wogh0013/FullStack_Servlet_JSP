@@ -74,7 +74,7 @@ public class BoardDao {
 		
 		try {
 			conn = DriverManager.getConnection(DBUtil.url,DBUtil.user, DBUtil.pwd);
-			String sql = "insert into board(title, contents, writer, wdate) values(?,?,?, now())";
+			String sql = "insert into board(title, writer, contents, wdate) values(?,?,?, now())";
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, dto.getTitle());
 			stmt.setString(2,  dto.getWriter());
@@ -97,6 +97,53 @@ public class BoardDao {
 			}
 			
 		}
+	}
+	
+	
+	BoardDto getView(String id)  /////////////////////
+	{
+		BoardDto resultDto = new BoardDto(); /////////////////////
+		
+		Connection conn = null;
+		Statement stmt =null;
+		ResultSet rs=null;
+		
+		try {
+			conn = DriverManager.getConnection(DBUtil.url,DBUtil.user, DBUtil.pwd);
+			String sql = "select * from board where id="+id; /////////////////////
+			System.out.println(sql);
+			
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			
+			if(rs.next()) /////////////////////
+			{
+				resultDto.setId( rs.getString("id"));/////////////////////
+				resultDto.setTitle( rs.getString("title"));/////////////////////
+				resultDto.setWriter( rs.getString("writer"));/////////////////////
+				resultDto.setContents( rs.getString("contents"));/////////////////////
+				resultDto.setWdate( rs.getString("wdate"));/////////////////////
+			}
+			
+		}catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		finally{
+			
+			try {
+				if(rs!=null) rs.close();
+				if(stmt!=null) stmt.close();
+				if(conn!=null) conn.close();
+				
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}
+			
+		}
+		
+		return resultDto;
 	}
 }
 
